@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../assets/logo.png'
 import NavContainer from './NavContainer'; 
-import App from '../App'; 
+
 
 class NavBar extends Component {
     constructor(props) {
@@ -19,13 +19,15 @@ class NavBar extends Component {
                 <NavContainer items={[
                     {
                         link: "/", 
-                        text: "Home", 
-                        component: App
+                        text: "Home"
                     }, 
                     {
                         link: "/Bot", 
-                        text: "Bot", 
-                        component: App
+                        text: "Bot"
+                    }, 
+                    {
+                        link: "/Premium", 
+                        text: <span className="text-warning font-weight-bold">Premium</span>
                     }
                 ]}/>
             </nav>

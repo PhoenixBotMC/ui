@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import Button from '../components/Button'; 
 
 class Bot extends Component {
   render() {
     return (
-      <p>This is the bot page. </p>
+      <div>
+        <p>This is the bot page. </p>
+        <Button>Test Button</Button>
+      </div>
       );
   }
 }
