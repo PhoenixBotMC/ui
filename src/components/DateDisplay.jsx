@@ -22,7 +22,8 @@ class DateDisplay extends Component {
     }
 
     componentDidMount() {
-        this.Websocket = new WebSocket('ws://localhost:4000/live/time'); 
+        console.log(`ws://${process.env.REACT_APP_SERVER}/live/time`);
+        this.Websocket = new WebSocket(`ws://${process.env.REACT_APP_SERVER}/live/time`); 
         this.Websocket.onmessage = this.handleData.bind(this); 
         this.Websocket.onclose = this.onSocketClose.bind(this); 
     }
