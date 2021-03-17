@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import { Route, Link } from "react-router-dom"; 
 
 class NavItem extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             link: props.link, 
-            text: props.text
+            text: props.text, 
+            component: props.component
          }
     }
     render() { 
         return ( 
-            <a className="nav-link" href={this.state.link}>
+            <Link className="nav-link" to={this.state.link}>
                 {this.state.text}
-            </a>
+            </Link>
          );
     }
 }

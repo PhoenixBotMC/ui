@@ -16,7 +16,7 @@ class NavContainer extends Component {
         for (const item of items) {
             generated.push(
                 <li className="nav-item">
-                    <NavItem link={item.link} text={item.text} />
+                    <NavItem link={item.link} text={item.text} component={ item.component } />
                 </li>
             ); 
         }
@@ -25,9 +25,9 @@ class NavContainer extends Component {
 
     render() { 
         return ( 
-            <ul className="navbar-nav">
-                {this.generateItems(this.state.items)}
-            </ul>
+                <ul className="navbar-nav">
+                    {this.generateItems(this.state.items)}
+                </ul>
          );
     }
 }

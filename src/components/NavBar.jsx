@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import logo from '../assets/logo.svg'
+import logo from '../assets/logo.png'
 import NavContainer from './NavContainer'; 
+import App from '../App'; 
 
 class NavBar extends Component {
     constructor(props) {
@@ -18,11 +19,13 @@ class NavBar extends Component {
                 <NavContainer items={[
                     {
                         link: "/", 
-                        text: "Home"
+                        text: "Home", 
+                        component: App
                     }, 
                     {
                         link: "/Bot", 
-                        text: "Bot"
+                        text: "Bot", 
+                        component: App
                     }
                 ]}/>
             </nav>
