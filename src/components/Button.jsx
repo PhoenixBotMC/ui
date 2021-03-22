@@ -5,13 +5,27 @@ class Button extends Component {
     super(props); 
     this.state = {
       children: props.children, 
-      classNames: props.className || ""
+      classNames: props.className || "", 
+      src: props.src, 
+      handleClick: props.onClick
     }; 
+
+    console.log(props.src);
+  }
+
+  handleClick(e) {
+    e.preventDefault(); 
+    console.log(this.state);
+    // window.location.href = this.state.src; 
+  }
+
+  componentDidUpdate() {
+    console.log("Button UPDATED!!!"); 
   }
 
   render() {
     return (
-      <button className={`btn btn-primary shadow-sm ${this.state.classNames}`}>{this.state.children}</button>
+      <button className={`btn btn-primary shadow-sm ${this.state.classNames}`} onClick={this.state.handleClick}>{this.state.children}</button>
     ); 
   }
 }

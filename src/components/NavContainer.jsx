@@ -25,7 +25,7 @@ class NavContainer extends Component {
 
     render() { 
         return ( 
-                <ul className="navbar-nav">
+                <ul className="navbar-nav mr-auto">
                     {this.generateItems(this.state.items)}
                 </ul>
          );

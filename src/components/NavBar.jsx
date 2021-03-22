@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../assets/logo.png'
 import NavContainer from './NavContainer'; 
+import UserLogin from './UserLogin';
 
 
 class NavBar extends Component {
@@ -19,17 +20,19 @@ class NavBar extends Component {
                 <NavContainer items={[
                     {
                         link: "/", 
-                        text: "Home"
+                        text: <span className="font-weight-bold">Home</span>
                     }, 
                     {
                         link: "/Bot", 
-                        text: "Bot"
+                        text: <span className="font-weight-bold">Bot</span>
                     }, 
                     {
                         link: "/Premium", 
                         text: <span className="text-warning font-weight-bold">Premium</span>
                     }
                 ]}/>
+
+                <UserLogin />
             </nav>
          );
     }
