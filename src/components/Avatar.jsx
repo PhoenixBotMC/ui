@@ -6,6 +6,15 @@ class Avatar extends Component {
     super(props);
     this.state = {};
   }
+
+  async logout() {
+    await fetch(`http://${process.env.REACT_APP_SERVER}/api/oauth/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
+    window.location.href = "/";
+  }
+
   render() {
     return (
       <div className="float-right navbar-nav">
@@ -16,7 +25,9 @@ class Avatar extends Component {
         />
         <div className="d-inline mt-3">
           <NavDropdown title={this.props.name} id="nav-dropdown">
-            <NavDropdown.Item eventKey="4.1">Logout</NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.1" onClick={this.logout}>
+              Logout
+            </NavDropdown.Item>
           </NavDropdown>
         </div>
       </div>
