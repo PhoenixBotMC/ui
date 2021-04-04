@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
-class DateDisplay extends Component {
+class DateDisplay extends Component<{}, { date: Number | "No longer connected" }> {
+  Websocket: WebSocket;
   constructor(props) {
     super(props);
     this.state = {
@@ -21,9 +22,7 @@ class DateDisplay extends Component {
   }
 
   componentDidMount() {
-    this.Websocket = new WebSocket(
-      `ws://${process.env.REACT_APP_SERVER}/live/time`
-    );
+    this.Websocket = new WebSocket(`ws://${process.env.REACT_APP_SERVER}/live/time`);
     this.Websocket.onmessage = this.handleData.bind(this);
     this.Websocket.onclose = this.onSocketClose.bind(this);
   }

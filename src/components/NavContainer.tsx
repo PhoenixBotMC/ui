@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NavItem from "./NavItem";
 
-class NavContainer extends Component {
+class NavContainer extends Component<{ items: Array<{ [key: string]: string | JSX.Element }> }> {
   constructor(props) {
     super(props);
     this.state = {};
@@ -13,11 +13,7 @@ class NavContainer extends Component {
     for (const item of items) {
       generated.push(
         <li className="nav-item">
-          <NavItem
-            link={item.link}
-            text={item.text}
-            component={item.component}
-          />
+          <NavItem link={item.link} text={item.text} />
         </li>
       );
     }
@@ -25,11 +21,7 @@ class NavContainer extends Component {
   }
 
   render() {
-    return (
-      <ul className="navbar-nav mr-auto">
-        {this.generateItems(this.props.items)}
-      </ul>
-    );
+    return <ul className="navbar-nav mr-auto">{this.generateItems(this.props.items)}</ul>;
   }
 }
 

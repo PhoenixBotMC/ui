@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Button from "./Button";
 import Avatar from "./Avatar";
 
-class UserLogin extends Component {
+class UserLogin extends Component<{}, { isLoggedIn: boolean; User: { [key: string]: any }; Link: string }, {}> {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,7 +28,6 @@ class UserLogin extends Component {
         isLoggedIn: isLoggedIn,
         User: userData.user,
       });
-      console.log(this.state);
       return;
     }
 
@@ -36,18 +35,13 @@ class UserLogin extends Component {
       isLoggedIn: false,
     });
 
-    console.log(this.state);
-
     await this.setLink();
   }
 
   async getUserData() {
-    const userData = await fetch(
-      `http://${process.env.REACT_APP_SERVER}/api/discord/user`,
-      {
-        credentials: "include",
-      }
-    );
+    const userData = await fetch(`http://${process.env.REACT_APP_SERVER}/api/discord/user`, {
+      credentials: "include",
+    });
 
     if (userData.status !== 200) {
       return {
@@ -62,12 +56,9 @@ class UserLogin extends Component {
   }
 
   async checkValidSession() {
-    const e = await fetch(
-      `http://${process.env.REACT_APP_SERVER}/api/oauth/isValidSession`,
-      {
-        credentials: "include",
-      }
-    );
+    const e = await fetch(`http://${process.env.REACT_APP_SERVER}/api/oauth/isValidSession`, {
+      credentials: "include",
+    });
     const response = await e.json();
     return response;
   }

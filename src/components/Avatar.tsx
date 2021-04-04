@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { NavDropdown } from "react-bootstrap";
 
-class Avatar extends Component {
+interface IAvatarProps {
+  link: string;
+  name: string;
+}
+
+class Avatar extends Component<IAvatarProps> {
   constructor(props) {
     super(props);
     this.state = {};
@@ -18,11 +23,7 @@ class Avatar extends Component {
   render() {
     return (
       <div className="float-right navbar-nav">
-        <img
-          src={this.props.link}
-          alt="Avatar"
-          className="rounded-circle w-25 d-inline mr-2"
-        />
+        <img src={this.props.link} alt="Avatar" className="rounded-circle w-25 d-inline mr-2" />
         <div className="d-inline mt-3">
           <NavDropdown title={this.props.name} id="nav-dropdown">
             <NavDropdown.Item eventKey="4.1" onClick={this.logout}>

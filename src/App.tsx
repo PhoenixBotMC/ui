@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './App.css';
-import NavBar from './components/NavBar'; 
-import ContentPane from './components/ContentPane'; 
-import { BrowserRouter as Router } from 'react-router-dom'; 
+import React, { Component } from "react";
+import "./App.css";
+import NavBar from "./components/NavBar";
+import ContentPane from "./components/ContentPane";
+import { BrowserRouter as Router } from "react-router-dom";
 
 class App extends Component {
   render() {

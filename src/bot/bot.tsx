@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import Button from '../components/Button'; 
+import React, { Component } from "react";
 
 class Bot extends Component {
   render() {
     return (
       <div>
         <p>This is the bot page. </p>
-        <Button>Test Button</Button>
       </div>
-      );
+    );
   }
 }
 
