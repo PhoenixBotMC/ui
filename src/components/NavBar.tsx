@@ -17,31 +17,32 @@ class NavBar extends Component<{}, INavBarState> {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-        <a className="navbar-brand btn-sm" href="/">
-          <img src={logo.default} className="App-logo" alt="Logo" />
+      <nav className='navbar navbar-dark bg-dark navbar-expand-lg'>
+        <a className='navbar-brand btn-sm' href='/'>
+          <img src={logo.default} className='App-logo' alt='Logo' />
         </a>
 
         <NavContainer
           items={[
             {
               link: "/",
-              text: <span className="font-weight-bold">Home</span>,
+              text: <span className='font-weight-bold'>Home</span>,
             },
-            {
-              link: "/Bot",
-              text: <span className="font-weight-bold">Bot</span>,
-            },
-
+            this.state.isLoggedIn // SRRY THIS IS THE ONLY WAY I THOUGHT OF DOING IT :/
+              ? {
+                  link: "/Bot",
+                  text: <span className='font-weight-bold'>Bot</span>,
+                }
+              : {},
             this.state.isLoggedIn
               ? {
                   link: "/dashboard",
-                  text: <span className="font-weight-bold">Dashboard</span>,
+                  text: <span className='font-weight-bold'>Dashboard</span>,
                 }
               : {},
             {
               link: "/Premium",
-              text: <span className="text-warning font-weight-bold">Premium</span>,
+              text: <span className='text-warning font-weight-bold'>Premium</span>,
             },
           ]}
         />

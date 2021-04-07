@@ -73,7 +73,7 @@ class UserLogin extends Component<{ parent: NavBar }, { User: { [key: string]: a
   async setLink() {
     let link = "";
     const linkReq = await AxiosTransport.get(
-      `http://${process.env.REACT_APP_SERVER}/api/oauth/getlink?redirect_uri=http://localhost:3000/SelectGuild&scope=identify%20guilds`
+      `http://${process.env.REACT_APP_SERVER}/api/oauth/getlink?redirect_uri=http://localhost:3000/SelectGuild&reject_uri=http://localhost:3000/&scope=identify%20guilds`
     );
 
     link = linkReq.data;
@@ -89,7 +89,7 @@ class UserLogin extends Component<{ parent: NavBar }, { User: { [key: string]: a
 
   render() {
     return (
-      <div className="float-right">
+      <div className='float-right'>
         {this.props.parent.state.isLoggedIn ? (
           <Avatar
             link={`https://cdn.discordapp.com/avatars/${this.state.User.id}/${this.state.User.avatar}.png`}
