@@ -3,11 +3,16 @@ import NavContainer from "./NavContainer";
 import UserLogin from "./UserLogin";
 const logo = require("../assets/logo.png");
 
-class NavBar extends Component {
+export interface INavBarState {
+  isLoggedIn: boolean;
+}
+
+class NavBar extends Component<{}, INavBarState> {
   constructor(props) {
     super(props);
-    this.state = {};
-    console.log(logo);
+    this.state = {
+      isLoggedIn: false,
+    };
   }
 
   render() {
@@ -27,6 +32,13 @@ class NavBar extends Component {
               link: "/Bot",
               text: <span className="font-weight-bold">Bot</span>,
             },
+
+            this.state.isLoggedIn
+              ? {
+                  link: "/dashboard",
+                  text: <span className="font-weight-bold">Dashboard</span>,
+                }
+              : {},
             {
               link: "/Premium",
               text: <span className="text-warning font-weight-bold">Premium</span>,
@@ -34,7 +46,7 @@ class NavBar extends Component {
           ]}
         />
 
-        <UserLogin />
+        <UserLogin parent={this} />
       </nav>
     );
   }

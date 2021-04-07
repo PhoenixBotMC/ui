@@ -11,11 +11,12 @@ class NavContainer extends Component<{ items: Array<{ [key: string]: string | JS
     const generated = [];
 
     for (const item of items) {
-      generated.push(
-        <li className="nav-item">
-          <NavItem link={item.link} text={item.text} />
-        </li>
-      );
+      if (item.link && item.text)
+        generated.push(
+          <li className="nav-item">
+            <NavItem link={item.link} text={item.text} />
+          </li>
+        );
     }
     return generated;
   }

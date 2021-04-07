@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Button from "./Button";
 import Avatar from "./Avatar";
+import AxiosTransport from "../AxiosTransport";
+import NavBar from "./NavBar";
 
-class UserLogin extends Component<{}, { isLoggedIn: boolean; User: { [key: string]: any }; Link: string }, {}> {
+class UserLogin extends Component<{ parent: NavBar }, { User: { [key: string]: any }; Link: string }, {}> {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false,
       User: {},
       Link: "",
     };
@@ -21,27 +22,34 @@ class UserLogin extends Component<{}, { isLoggedIn: boolean; User: { [key: strin
 
     isLoggedIn = isValidSession;
 
-    const userData = await this.getUserData();
+    let userData;
+
+    try {
+      userData = await this.getUserData();
+    } catch (err) {
+      // user not logged in
+      this.props.parent.setState({
+        isLoggedIn: false,
+      });
+
+      await this.setLink();
+      return;
+    }
 
     if (isLoggedIn && userData.status) {
-      this.setState({
+      this.props.parent.setState({
         isLoggedIn: isLoggedIn,
+      });
+
+      this.setState({
         User: userData.user,
       });
       return;
     }
-
-    this.setState({
-      isLoggedIn: false,
-    });
-
-    await this.setLink();
   }
 
   async getUserData() {
-    const userData = await fetch(`http://${process.env.REACT_APP_SERVER}/api/discord/user`, {
-      credentials: "include",
-    });
+    const userData = await AxiosTransport.get(`http://${process.env.REACT_APP_SERVER}/api/discord/user`);
 
     if (userData.status !== 200) {
       return {
@@ -50,29 +58,25 @@ class UserLogin extends Component<{}, { isLoggedIn: boolean; User: { [key: strin
     } else {
       return {
         status: true,
-        user: await userData.json(),
+        user: userData.data,
       };
     }
   }
 
   async checkValidSession() {
-    const e = await fetch(`http://${process.env.REACT_APP_SERVER}/api/oauth/isValidSession`, {
-      credentials: "include",
-    });
-    const response = await e.json();
+    const e = await AxiosTransport.get(`http://${process.env.REACT_APP_SERVER}/api/oauth/isValidSession`);
+    const response = e.data;
+
     return response;
   }
 
   async setLink() {
     let link = "";
-    const linkReq = await fetch(
-      `http://${process.env.REACT_APP_SERVER}/api/oauth/getlink?redirect_uri=http://localhost:3000&scope=identify%20guilds`,
-      {
-        credentials: "include",
-      }
+    const linkReq = await AxiosTransport.get(
+      `http://${process.env.REACT_APP_SERVER}/api/oauth/getlink?redirect_uri=http://localhost:3000/SelectGuild&scope=identify%20guilds`
     );
 
-    link = await linkReq.text();
+    link = linkReq.data;
 
     this.setState({
       Link: link,
@@ -86,7 +90,7 @@ class UserLogin extends Component<{}, { isLoggedIn: boolean; User: { [key: strin
   render() {
     return (
       <div className="float-right">
-        {this.state.isLoggedIn ? (
+        {this.props.parent.state.isLoggedIn ? (
           <Avatar
             link={`https://cdn.discordapp.com/avatars/${this.state.User.id}/${this.state.User.avatar}.png`}
             name={this.state.User.username}
