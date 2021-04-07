@@ -21,8 +21,6 @@ class Guild extends Component<IGuildProps, IGuildState> {
   }
 
   render() {
-    console.log(`https://cdn.discordapp.com/icons/${this.props.id}/${this.props.icon}.png`);
-
     return (
       <div className="justify-content-center">
         <div className="w-75 m-auto">
