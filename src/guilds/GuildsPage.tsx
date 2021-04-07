@@ -56,7 +56,6 @@ class GuildsPage extends Component<IGuildsPageProps, IGuildsPageState> {
     let data;
     try {
       data = await AxiosTransport.get(`http://${process.env.REACT_APP_SERVER}/api/discord/guilds`);
-      console.log(data);
     } catch (err) {
       // PROBABLY not logged in :/
       this.setState({

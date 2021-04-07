@@ -18,11 +18,7 @@ class BotStatus extends Component<IBotStatusProps, IBotStatusState> {
   }
 
   handleData(data, component: WebSocketComponent) {
-    console.log(data);
-
     const d = Utils.parseJson(data.data);
-
-    console.log(this);
 
     if (d.status || d.status === false) {
       // stupid js falsy stuff
