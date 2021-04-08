@@ -28,16 +28,28 @@ class NavBar extends Component<{}, INavBarState> {
               link: "/",
               text: <span className='font-weight-bold'>Home</span>,
             },
-            this.state.isLoggedIn // SRRY THIS IS THE ONLY WAY I THOUGHT OF DOING IT :/
+            this.state.isLoggedIn // SRRY THIS IS THE ONLY WAY I THOUGHT OF DOING IT, I KNOW ITS UGLY IF YOU FIND A WAY PLEASE TELL ME CUZ WTF IS THIS :/ :/
               ? {
-                  link: "/Bot",
-                  text: <span className='font-weight-bold'>Bot</span>,
+                  link: "/user",
+                  text: <span className='font-weight-bold'>User Dashboard</span>,
                 }
               : {},
             this.state.isLoggedIn
               ? {
                   link: "/dashboard",
-                  text: <span className='font-weight-bold'>Dashboard</span>,
+                  text: <span className='font-weight-bold'>Server Dashboard</span>,
+                }
+              : {},
+            this.state.isLoggedIn
+              ? {
+                  link: "/bot",
+                  text: <span className='text-warning font-weight-bold'>Bot Dashboard</span>,
+                }
+              : {},
+            this.state.isLoggedIn
+              ? {
+                  link: "/premiumdashboard",
+                  text: <span className='text-warning font-weight-bold'>Premium Dashboard</span>,
                 }
               : {},
             {

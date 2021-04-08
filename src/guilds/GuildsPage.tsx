@@ -2,6 +2,7 @@ import { Component } from "react";
 import AxiosTransport from "../AxiosTransport";
 import Loading from "../components/Loading";
 import Guild from "./components/Guild";
+import { History } from "history";
 
 type PartialGuild = {
   id: string;
@@ -19,6 +20,7 @@ export interface IGuildsPageProps {
       redirect: string;
     };
   };
+  history: History;
 }
 
 export interface IGuildsPageState {
@@ -43,7 +45,7 @@ class GuildsPage extends Component<IGuildsPageProps, IGuildsPageState> {
       match: { params },
     } = this.props;
     this.state.request.forEach((g) => {
-      if (g.isBotInGuild) guilds.push(<Guild {...g} redirectPage={params.redirect || "dashboard"} />);
+      if (g.isBotInGuild) guilds.push(<Guild {...g} redirectPage={params.redirect || "dashboard"} {...this.props} />);
     });
     return guilds;
   }

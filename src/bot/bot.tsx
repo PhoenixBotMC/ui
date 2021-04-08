@@ -1,9 +1,11 @@
-import ServerPage from "../components/ServerPage";
+import ServerPage, { IServerPageProps } from "../components/ServerPage";
 import BotStatus from "./BotStatus";
 
+export interface IBotProps extends IServerPageProps {}
+
 class Bot extends ServerPage {
-  constructor(props) {
-    super(props, "Bot");
+  constructor(props: IBotProps) {
+    super(props, "bot");
   }
 
   render() {

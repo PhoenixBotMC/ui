@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { History } from "history";
 
 export interface IServerPageProps {
   match: {
@@ -6,6 +7,7 @@ export interface IServerPageProps {
       serverID: string;
     };
   };
+  history: History;
 }
 
 export interface IServerPageState {}
@@ -23,7 +25,7 @@ class ServerPage extends Component<IServerPageProps, IServerPageState> {
       match: { params },
     } = this.props;
 
-    if (!params.serverID) window.location.href = `/SelectGuild/${this.page}`;
+    if (!params.serverID) this.props.history.push(`/selectguild/${this.page}`);
   }
 
   render() {

@@ -6,7 +6,7 @@ export interface IGuildPanelState {}
 
 class GuildPanel extends ServerPage {
   constructor(props: IGuildPanelProps) {
-    super(props, "dashboard");
+    super(props, "premiumdashboard");
     this.state = {};
   }
   render() {
