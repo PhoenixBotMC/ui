@@ -6,4 +6,17 @@ export default class Utils {
       return data;
     }
   }
+
+  static parseServerLetters(name: string) {
+    let res = "";
+    name.split(" ").forEach((e) => {
+      console.log(e);
+
+      res += e[0];
+    });
+
+    console.log(res);
+
+    return res;
+  }
 }

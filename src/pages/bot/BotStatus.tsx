@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import WebSocketComponent from "../components/WebSocketComponent";
-import Utils from "../utils/utils";
+import WebSocketComponent from "../../components/WebSocketComponent";
+import Utils from "../../utils/utils";
 export interface IBotStatusProps {
   GuildID: string;
 }
@@ -24,14 +24,17 @@ class BotStatus extends Component<IBotStatusProps, IBotStatusState> {
       // stupid js falsy stuff
       component.setState({
         currentComponent: d.status ? (
-          <span className="text-success font-weight-bold">• Online</span>
+          <span className='text-success font-weight-bold'>• Online</span>
         ) : (
-          <span className="text-danger font-weight-bold">• Offline</span>
+          <span className='text-danger font-weight-bold'>• Offline</span>
         ),
+      });
+      this.setState({
+        alert: <div></div>,
       });
     } else if (d.error) {
       this.setState({
-        alert: <div className="alert alert-danger">An error occurred: {d.error}</div>,
+        alert: <div className='alert alert-danger'>An error occurred: {d.error}</div>,
       });
     }
   }
@@ -43,8 +46,8 @@ class BotStatus extends Component<IBotStatusProps, IBotStatusState> {
         <WebSocketComponent
           WebSocket={`ws://${process.env.REACT_APP_SERVER}/live/botstatus?guildID=${this.props.GuildID}`}
           handleData={this.handleData}
-          ConnectingMessage={<span className="text-success font-weight-bold">• Connecting...</span>}
-          NotConnectedMessage={<span className="text-danger font-weight-bold">• Not Connected</span>}
+          ConnectingMessage={<span className='text-success font-weight-bold'>• Connecting...</span>}
+          NotConnectedMessage={<span className='text-danger font-weight-bold'>• Not Connected</span>}
           Parent={this}
         />
       </div>

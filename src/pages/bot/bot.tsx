@@ -1,4 +1,4 @@
-import ServerPage, { IServerPageProps } from "../components/ServerPage";
+import ServerPage, { IServerPageProps } from "../../components/ServerPage";
 import BotStatus from "./BotStatus";
 
 export interface IBotProps extends IServerPageProps {}

@@ -1,6 +1,6 @@
 import { Component } from "react";
-import AxiosTransport from "../AxiosTransport";
-import Loading from "../components/Loading";
+import AxiosTransport from "../../AxiosTransport";
+import Loading from "../../components/Loading";
 import Guild from "./components/Guild";
 import { History } from "history";
 
@@ -29,7 +29,7 @@ export interface IGuildsPageState {
   request: Array<PartialGuild>;
 }
 
-class GuildsPage extends Component<IGuildsPageProps, IGuildsPageState> {
+class GuildSelectPage extends Component<IGuildsPageProps, IGuildsPageState> {
   constructor(props: IGuildsPageProps) {
     super(props);
     this.state = {
@@ -45,7 +45,9 @@ class GuildsPage extends Component<IGuildsPageProps, IGuildsPageState> {
       match: { params },
     } = this.props;
     this.state.request.forEach((g) => {
-      if (g.isBotInGuild) guilds.push(<Guild {...g} redirectPage={params.redirect || "dashboard"} {...this.props} />);
+      // if (g.isBotInGuild)
+
+      guilds.push(<Guild {...g} redirectPage={params.redirect || "dashboard"} {...this.props} />);
     });
     return guilds;
   }
@@ -91,4 +93,4 @@ class GuildsPage extends Component<IGuildsPageProps, IGuildsPageState> {
   }
 }
 
-export default GuildsPage;
+export default GuildSelectPage;
